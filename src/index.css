@@ -55,6 +55,13 @@ a {
   gap: 25px;
 }
 
+.main-wrapper-feed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
 /* ---- Header */
 
 header {
@@ -207,6 +214,27 @@ h1 {
   color: grey;
 }
 
+
+/* --- Pagination --- */
+
+.pagination {
+  padding: 10px;
+  border: 1px solid pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.pagination-buttons button {
+  margin: 10px;
+}
 
 
 /* ---- Footer */

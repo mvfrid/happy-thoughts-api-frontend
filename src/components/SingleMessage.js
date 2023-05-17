@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
-// import { formatDistance } from 'date-fns';
+import { formatDistance } from 'date-fns';
 
 const SingleMessage = ({ singleMessage, fetchPosts }) => {
   const [liked, setLiked] = useState(false); // Initial state false
 
   // We calculate the time since the message was posted (date-fns)
-  // const timeSincePosted = formatDistance(new Date(singleMessage.createdAt), new Date(), { addSuffix: true });
+  const timeSincePosted = formatDistance(new Date(singleMessage.createdAt), new Date(), { addSuffix: true });
 
   // This function posts a like (patch - update) to the API and updates the message list through fetchPosts
   const onLikeIncrease = () => {
@@ -35,7 +35,7 @@ const SingleMessage = ({ singleMessage, fetchPosts }) => {
           </button>
           <span className="num-likes">x{singleMessage.heart}</span>
         </div>
-        <div className="info-time">timeSincePosted</div>
+        <div className="info-time">{timeSincePosted}</div>
       </div>
     </div>
   );
