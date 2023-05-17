@@ -29,7 +29,7 @@ const PostMessage = ({ newMessage, fetchPosts }) => {
       };
 
       // console.log('options:', options);
-      fetch('https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts', options)
+      fetch('https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts', options)
         .then((response) => response.json())
         .then((data) => {
           newMessage(data)

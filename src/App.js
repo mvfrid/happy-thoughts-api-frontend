@@ -13,7 +13,7 @@ export const App = () => {
   // We call the messages in the API, by GET method:
   const fetchPosts = () => {
     setLoading(true);
-    fetch('https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts')
+    fetch('https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts')
       .then((res) => res.json())
       .then((data) => setMessageList(data))
       .catch((error) => console.error(error))

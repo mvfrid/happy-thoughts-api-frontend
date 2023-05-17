@@ -17,7 +17,7 @@ const SingleMessage = ({ singleMessage, fetchPosts }) => {
     }
 
     // eslint-disable-next-line no-underscore-dangle
-    fetch(`https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts/${singleMessage._id}/like`, options)
+    fetch(`https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts/${singleMessage._id}/like`, options)
       .then((response) => response.json())
       .then(() => {
         setNumLikes(numLikes + 1); // We post to the API the current number of likes + 1
