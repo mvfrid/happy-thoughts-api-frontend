@@ -32,7 +32,7 @@ const PostMessage = ({ newMessage, fetchPosts }) => {
       fetch('https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts', options)
         .then((response) => response.json())
         .then((data) => {
-          newMessage(data)
+          newMessage(data.response)
           setNewPost('')
           fetchPosts()
         })
