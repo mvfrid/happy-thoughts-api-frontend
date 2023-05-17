@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import PostMessage from './components/PostMessage';
@@ -19,7 +20,7 @@ export const App = () => {
       .finally(() => setLoading(false));
   };
 
-    // The useEffect hook is used to call the fetchPosts function and update the messageList state with the data retrieved from the API.
+  // The useEffect hook is used to call the fetchPosts function and update the messageList state with the data retrieved from the API.
   useEffect(() => {
     fetchPosts();
   }, []);
