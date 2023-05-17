@@ -28,6 +28,7 @@ export const App = () => {
   // This updates the message list, adding the new submitted message
   const addNewPost = (newMessage) => {
     setMessageList([newMessage, ...messageList]);
+    console.log('messageList', messageList)
   };
 
   return (
