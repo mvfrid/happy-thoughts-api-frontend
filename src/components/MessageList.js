@@ -6,11 +6,14 @@ import SingleMessage from './SingleMessage';
 
 const MessageList = ({ messageList, fetchPosts }) => {
   return (
-    <div className="list-wrapper">
-      {messageList.map((singleMessage) => (
-        <SingleMessage key={singleMessage._id} singleMessage={singleMessage} fetchPosts={fetchPosts} />
-      ))}
-    </div>
+    <>
+      <div className="list-wrapper">
+        {messageList.map((singleMessage) => (
+          <SingleMessage key={singleMessage._id} singleMessage={singleMessage} fetchPosts={fetchPosts} />
+        ))}
+      </div>
+      <button type="button">Next page</button>
+    </>
   );
 };
 

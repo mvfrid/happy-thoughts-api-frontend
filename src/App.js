@@ -12,10 +12,14 @@ export const App = () => {
   // When fetchPosts sets the loading or messageList state, it triggers a re-render of the App component.
   // We call the messages in the API, by GET method:
   const fetchPosts = () => {
+    const page = 1;
+    const limit = 20;
+
     setLoading(true);
-    fetch('https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts')
+    fetch(`https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts?page=${page}&limit=${limit}`)
+    // thoughts?page=1&limit=20
       .then((res) => res.json())
-      .then((data) => setMessageList(data))
+      .then((data) => setMessageList(data.response))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   };
@@ -28,7 +32,6 @@ export const App = () => {
   // This updates the message list, adding the new submitted message
   const addNewPost = (newMessage) => {
     setMessageList([newMessage, ...messageList]);
-    console.log('messageList', messageList)
   };
 
   return (
