@@ -19,7 +19,6 @@ export const Feed = () => {
 
     setLoading(true);
     fetch(`https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts?page=${currentPage}&limit=${limit}&sortField=${sortBy}&sortOrder=${sortOrder}`)
-    // thoughts?page=1&limit=20
       .then((res) => res.json())
       .then((data) => {
         setMessageList(data.response);
@@ -36,22 +35,22 @@ export const Feed = () => {
 
   const handleSorting = (event) => {
     const selectedSorting = event.target.value;
-    if (selectedSorting === 'oldest') {
+    if (selectedSorting === 'createdAt-asc') {
       setSortBy('createdAt');
       setSortOrder('asc');
-      console.log('selectedSorting', selectedSorting, 'sortBy', sortBy, 'sortOrder', sortOrder)
-    } else if (selectedSorting === 'mostliked') {
+      setCurrentPage(1);
+    } else if (selectedSorting === 'heart-desc') {
       setSortBy('heart');
       setSortOrder('desc');
-      console.log('selectedSorting', selectedSorting, 'sortBy', sortBy, 'sortOrder', sortOrder)
-    } else if (selectedSorting === 'leastliked') {
+      setCurrentPage(1);
+    } else if (selectedSorting === 'heart-asc') {
       setSortBy('heart');
       setSortOrder('asc');
-      console.log('selectedSorting', selectedSorting, 'sortBy', sortBy, 'sortOrder', sortOrder)
+      setCurrentPage(1);
     } else {
       setSortBy('createdAt');
       setSortOrder('desc');
-      console.log('selectedSorting', selectedSorting, 'sortBy', sortBy, 'sortOrder', sortOrder)
+      setCurrentPage(1);
     }
   };
 
@@ -78,26 +77,30 @@ export const Feed = () => {
   return (
     <div className="main-wrapper-feed">
       <PostMessage newMessage={addNewPost} fetchPosts={fetchPosts} />
-      <div className="sort-feed">
-        <form>
-          <label htmlFor="sort"><span>Sort by:</span>
-            <select name="sorting" id="sort" onChange={handleSorting}>
-              <option value="latest">Latest thoughts</option>
-              <option value="oldest">Oldest thoughts</option>
-              <option value="mostliked">Most liked thoughts</option>
-              <option value="leastliked">Least liked thoughts</option>
-            </select>
-          </label>
-        </form>
-      </div>
-      <MessageList loading={loading} messageList={messageList} setMessageList={setMessageList} fetchPosts={fetchPosts} />
-      <div className="pagination">
-        <p>Currently showing page {currentPage}/{totalPages}</p>
-        <div className="pagination-buttons">
-          <button type="button" onClick={handlePreviousPage} disabled={isPreviousPageDisabled}>Previous page</button>
-          <button type="button" onClick={handleNextPage} disabled={isNextPageDisabled} title="Go to next page">Next page</button>
+      {!loading && (
+        <div className="sort-feed">
+          <form>
+            <label htmlFor="sort"><span>Sort by:</span>
+              <select name="sorting" id="sort" onChange={handleSorting} value={`${sortBy}-${sortOrder}`} className="custom-select">
+                <option value="createdAt-desc">Latest thoughts</option>
+                <option value="createdAt-asc">Oldest thoughts</option>
+                <option value="heart-desc">Most liked thoughts</option>
+                <option value="heart-asc">Least liked thoughts</option>
+              </select>
+            </label>
+          </form>
         </div>
-      </div>
+      )}
+      <MessageList loading={loading} messageList={messageList} setMessageList={setMessageList} fetchPosts={fetchPosts} />
+      {!loading && (
+        <div className="pagination">
+          <p>Currently showing page {currentPage}/{totalPages}</p>
+          <div className="pagination-buttons">
+            <button type="button" onClick={handlePreviousPage} disabled={isPreviousPageDisabled}>Previous page</button>
+            <button type="button" onClick={handleNextPage} disabled={isNextPageDisabled} title="Go to next page">Next page</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

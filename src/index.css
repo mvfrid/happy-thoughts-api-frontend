@@ -26,6 +26,7 @@ code {
   --main-width-desktop: 70%;
 
   --hover-color: rgb(255, 199, 220);
+  --disabled-color: rgb(245, 222, 230);
 }
 
 .emoji {
@@ -156,6 +157,29 @@ h1 {
   background-color: var(--hover-color);
 }
 
+
+/* ---- Dropdown --- */
+ .sort-feed {
+  color: #ff199f;
+ }
+
+ .sort-feed span {
+  margin-right: 10px;
+ }
+
+ .custom-select {
+  background: -webkit-linear-gradient(45deg, #fdd7ed, #f0ffce, #d5cdff);
+  border-radius: 6px;
+  padding: 4px 8px;
+ }
+
+ .custom-select:hover {
+  opacity: 0.9;
+ }
+
+
+
+
 /* ---- Message List container */
 
 .list-wrapper {
@@ -220,12 +244,18 @@ h1 {
 
 .pagination {
   padding: 10px;
-  border: 1px solid pink;
+  border: 1px solid rgb(255, 183, 210);
+  border-radius: 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+.pagination p {
+  margin: 7px;
+}
+
 
 .pagination-buttons {
   display: flex;
@@ -234,8 +264,26 @@ h1 {
 
 
 .pagination-buttons button {
-  margin: 10px;
+  margin: 5px;
+  background-color: rgb(255, 183, 210);
+  border-radius: 25px;
+  padding: 7px 12px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
+
+.pagination-buttons button:hover {
+  background-color: var(--hover-color);
+}
+
+.pagination-buttons button:disabled,
+.pagination-buttons button[disabled]{
+  background-color: var(--disabled-color);
+  color: #666666;
+  cursor: no-drop
+}
+
 
 
 /* ---- Footer */
