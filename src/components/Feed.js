@@ -9,6 +9,8 @@ export const Feed = () => {
   const [messageList, setMessageList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [sortBy, setSortBy] = useState('createdAt');
+  const [sortOrder, setSortOrder] = useState('desc');
 
   // When fetchPosts sets the loading or messageList state, it triggers a re-render of the App component.
   // We call the messages in the API, by GET method:
@@ -16,7 +18,7 @@ export const Feed = () => {
     const limit = 20;
 
     setLoading(true);
-    fetch(`https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts?page=${currentPage}&limit=${limit}`)
+    fetch(`https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts?page=${currentPage}&limit=${limit}&sortField=${sortBy}&sortOrder=${sortOrder}`)
     // thoughts?page=1&limit=20
       .then((res) => res.json())
       .then((data) => {
@@ -31,6 +33,27 @@ export const Feed = () => {
   useEffect(() => {
     fetchPosts();
   }, [currentPage]);
+
+  const handleSorting = (event) => {
+    const selectedSorting = event.target.value;
+    if (selectedSorting === 'oldest') {
+      setSortBy('createdAt');
+      setSortOrder('asc');
+      console.log('selectedSorting', selectedSorting, 'sortBy', sortBy, 'sortOrder', sortOrder)
+    } else if (selectedSorting === 'mostliked') {
+      setSortBy('heart');
+      setSortOrder('desc');
+      console.log('selectedSorting', selectedSorting, 'sortBy', sortBy, 'sortOrder', sortOrder)
+    } else if (selectedSorting === 'leastliked') {
+      setSortBy('heart');
+      setSortOrder('asc');
+      console.log('selectedSorting', selectedSorting, 'sortBy', sortBy, 'sortOrder', sortOrder)
+    } else {
+      setSortBy('createdAt');
+      setSortOrder('desc');
+      console.log('selectedSorting', selectedSorting, 'sortBy', sortBy, 'sortOrder', sortOrder)
+    }
+  };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -55,6 +78,18 @@ export const Feed = () => {
   return (
     <div className="main-wrapper-feed">
       <PostMessage newMessage={addNewPost} fetchPosts={fetchPosts} />
+      <div className="sort-feed">
+        <form>
+          <label htmlFor="sort"><span>Sort by:</span>
+            <select name="sorting" id="sort" onChange={handleSorting}>
+              <option value="latest">Latest thoughts</option>
+              <option value="oldest">Oldest thoughts</option>
+              <option value="mostliked">Most liked thoughts</option>
+              <option value="leastliked">Least liked thoughts</option>
+            </select>
+          </label>
+        </form>
+      </div>
       <MessageList loading={loading} messageList={messageList} setMessageList={setMessageList} fetchPosts={fetchPosts} />
       <div className="pagination">
         <p>Currently showing page {currentPage}/{totalPages}</p>
