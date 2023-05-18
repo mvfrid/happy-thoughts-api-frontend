@@ -32,7 +32,7 @@ export const Feed = () => {
   // The useEffect hook is used to call the fetchPosts function and update the messageList state with the data retrieved from the API.
   useEffect(() => {
     fetchPosts();
-  }, [currentPage]);
+  }, [currentPage, sortBy, sortOrder]);
 
   const handleSorting = (event) => {
     const selectedSorting = event.target.value;
