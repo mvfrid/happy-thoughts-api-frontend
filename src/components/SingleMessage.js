@@ -19,7 +19,6 @@ const SingleMessage = ({ singleMessage, fetchPosts }) => {
     fetch(`https://project-happy-thoughts-api-xac4iwz3fa-lz.a.run.app/thoughts/${singleMessage._id}/like`, options)
       .then((response) => response.json())
       .then(() => {
-        console.log('singleMessage.heart', singleMessage.heart)
         setLiked(true) // We set the state liked to true, giving it a different color
         fetchPosts(); // We call the fetchPost function in the grandparent, fetching from the API, rendering an update in messageList.
       })
