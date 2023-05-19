@@ -171,6 +171,7 @@ h1 {
   background: -webkit-linear-gradient(45deg, #fdd7ed, #f0ffce, #d5cdff);
   border-radius: 6px;
   padding: 4px 8px;
+  color: black;
  }
 
  .custom-select:hover {
@@ -266,6 +267,7 @@ h1 {
 .pagination-buttons button {
   margin: 5px;
   background-color: rgb(255, 183, 210);
+  color: black;
   border-radius: 25px;
   padding: 7px 12px;
   border: none;
@@ -275,6 +277,7 @@ h1 {
 
 .pagination-buttons button:hover {
   background-color: var(--hover-color);
+  color: black;
 }
 
 .pagination-buttons button:disabled,
